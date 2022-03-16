@@ -1,1 +1,244 @@
+\documentclass[8pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
 
+\title{CS350 HW1}
+\author{Saeah Go}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{2.1.1}
+For each of the following algorithms, indicate (i) a natural size metric for its inputs, (ii) its basic operation, and (iii) whether the basic operation count can be different for inputs of the same size:\\
+a. computing the sum of n numbers\\
+    \indent(i) A natural size metric for its inputs is n. \\
+    \indent(ii) The basic operation is addition of two numbers.\\
+    \indent(iii) No the basic operation count cannot be different for inputs of the same size in this problem.\\
+b. computing n!\\
+    \indent(i) A natural size metric for it inputs is size of the n. \\
+    \indent(ii) The basic operation is multiplication of two numbers.\\
+    \indent(iii) No the basic operation count cannot be different for inputs of the same size in the problem.\\
+c. finding the largest element in a list of n numbers\\
+    \indent(i) A natural size metric for its inputs is n. \\
+    \indent(ii) The basic operation is a comparison of two numbers. \\
+    \indent(iii) No the basic operation count cannot be different for inputs of the same size in the problem. \\
+d. Euclid’s algorithm\\
+    \indent(i) Either the size of larger of two input numbers OR either the size of smaller of two input numbers OR sum of the sizes of two input numbers. \\
+    \indent(ii) The basic operation is the modulo division\\
+    \indent(iii) Yes the basic operation count can be different for inputs of the same size. \\
+e. sieve of Eratosthenes\\
+    \indent(i) A natural size metric for its inputs is the size of the n (the number of bits in the binary representation) \\
+    \indent(ii) The basic operation is the elimination of a number from remaining numbers to be prime.\\
+    \indent(iii) No the basic operation count cannot be different for inputs of the same size. \\
+f. pen-and-pencil algorithm for multiplying two n-digit decimal integers\\
+    \indent(i) A natural size metric for its inputs in n. \\
+    \indent(ii) The basic operation is the multiplication of two input digits. \\
+    \indent(iii) No the basic operation count cannot be different for inputs of the same size. 
+
+\section{2.1.3}
+Consider a variation of sequential search that scans a list to return the number
+of occurrences of a given search key in the list. Does its efficiency differ from
+the efficiency of classic sequential search? \\
+    \indent Yes the efficiency of sequential search algorithm differs from the efficiency of classic sequential search. \\ 
+    \indent Sequential search algorithm always takes the n key comparisons on every input with size n. In classic version of sequential search algorithm, the number of key comparisons may vary between n and 1. So sequential search algorithm does not provide the efficiency. Because it must scan from the beginning to end of the list. 
+    Based on time complexity, in best case, if the searching element is initially present in the list, then the classic version finds the element in one operation, so $O(1)$ time. In the worst case, if the searching item is presented in the last end of the list, then the sequential search approach takes $\mathcal{O}(n)$ time.
+    But on average case, the element may present on any position so there will be equal time complexity for both approaches. Based on comparisons, the classic search varies from the sequential search based on time complexity. Thus efficiency of variation of sequential search differs from classical sequential search.
+
+\section{2.1.9} 
+For each of the following pairs of functions, indicate whether the first function of each of the following pairs has a lower, same, or higher order of growth (to within a constant multiple) than the second function. \\
+a. $n(n + 1)$ and $2000n^2$ \\ 
+    \indent $n(n + 1)\approx n^2$ Thus the first function and the second function have the same order of growth to within a constant multiple. \\
+b. $100n^2$ and $0.01n^3$ \\
+    \indent The first function, $100n^2$, has a lower order of growth than the second function, $0.01n^3$, to within a constant multiple. \\
+c. $\log_2 n$ and $\ln n$ \\ 
+    \indent $$\log_{2} n =  \frac{\log{n}}{\log{2}} \;and\; \ln(n) =  \frac{\log{n}}{\log{e}}$$ These two functions are logarithmic functions, and we know that all logarithmic functions have the same order of growth to within a constant multiple. \\
+d. $\log_{2}^2 n$ and $\log_{2} n^2$ \\
+    \indent $\log_{2}^{2} n$ = $(\log_2{n})^{2}$ = $\log_{2} n \times \log_{2} n$ and $\log_{2} n^2$ = $2 \times \log_{2} n$ Thus the first function has a higher order of growth than the second function to within a constant multiple. \\
+e. $2^{(n-1)}$ and $2^{n}$ \\
+% \log n^2 	\log_n n^2
+    \indent $2^{(n-1)}$ = $2^n \times 2^{-1}$ = $2^n \times \frac{1}{2} $ = $\frac{2^n}{2}$ So the first function and the second function have the same order of growth to within a constant multiple. \\
+f. (n-1)! and n! \\
+    \indent n! = $n \times (n-1)!$ So the first function has a lower order of growth than the second function to within a constant multiple.
+    
+\section{2.2.2}
+Use the informal definitions of $O, \Theta$, and $\Omega$ to determine whether the following assertions are true or false. \\
+a. $\frac{n(n+1)}{2} \; \epsilon \; O(n^3)$ \\
+    \indent $\frac{n(n+1)}{2} = \frac{n^2 + n}{2} \le n^3$ Because the $O$-notation is the set of all functions with a lower or same order of growth, the assertion is true.  \\
+b. $\frac{n(n+1)}{2} \; \epsilon \; O(n^2)$ \\
+    \indent $\frac{n(n+1)}{2} = \frac{n^2 + n}{2} \le n^2$ With the same reason with a, the assertion is true. \\
+c. $\frac{n(n+1)}{2} \; \epsilon \; \Theta(n^3)$ \\
+    \indent $\frac{n(n+1)}{2} = \frac{n^2 + n}{2} < n^3$ With $\Theta$-notation, it should be bounded both above and below. But in this case, since $\frac{n(n+1)}{2}$ is strictly less than $n^3$, the assertion is false. \\
+d. $\frac{n(n+1)}{2} \; \epsilon \; \Omega(n)$ \\
+    \indent $\frac{n(n+1)}{2} = \frac{n^2 + n}{2} \ge n$ A function t(n) is said to be in $\Omega(g(n))$, if t(n) is bounded below by some positive constant multiple of $g(n)$ for all large $n$. So the assertion is true by the definition of Big-omega notation.
+    
+\section{2.2.5}
+List the following functions according to their order of growth from the lowest to the highest: \\
+\indent \indent $(n-2)!$, $5lg(n+100)^{10}$, $2^{2n}$, $0.001n^4 + 3n^3 + 1$, $\ln^2 n$, $\sqrt[3]{n}$, $3^n$ \\
+\indent In general cases, the order of growth from the lowest to the highest look like: $O(1), O(log n), O(n), O(n log n), O(n^2) and O(n^3), O(2^n), O(n!)$ We can use this to figure out the following functions order of growth from the lowest to the highest. \\ 
+\indent The lowest is $5lg(n+100)^{10}$. Since $5\;lg(n+100)^{10}$ = $5 \times10\;lg(n+100)$ = $50\;lg(n+100) \; \epsilon \; \Theta(log(n))$ \\
+\indent Then $\ln^2 n$ is the next lowest one because $\ln^2 n \; \epsilon \; \Theta(log^2 n)$ \\
+\indent The next one is $\sqrt[3]{n}$, as we know that $\sqrt[3]{n} \; \epsilon \; \Theta(\sqrt[3]{n})$ \\
+\indent The next lowest one is $0.001n^4 + 3n^3 + 1$, which can be expressed as $0.001n^4 + 3n^3 + 1 \; \epsilon \; \Theta(n^4)$ \\
+\indent The next one would be $3^n$, since $3^n \; \epsilon \; \Theta(3^n)$ \\
+\indent For the next one, I can choose $2^{2n}$. Since $2^{2n} = 4^n \; \epsilon \; \Theta(4^n)$ \\
+\indent The last one, the highest one is $(n-2)!$ \\
+\indent To summarize, the order of growth from the lowest to the highest would be: $5lg(n+100)^{10}$, $\ln^2 n$, $\sqrt[3]{n}$, $0.001n^4 + 3n^3 + 1$, $3^n$, $2^{2n}$, $(n-2)!$  
+
+\section{2.3.1 a, c, e}
+Compute the following sums. \\
+\indent a. $1 + 3 + 5 + 7+ \cdots + 999$\\ 
+\indent The following sums are the sum of the first odd natural integers. So the equation can be written as: \\
+\indent $1 + 3 + 5 + 7+ \cdots + 999$ \\ 
+\indent $= \sum\limits_{i=1}^{500} 2i-1$ \\ 
+\indent $= \sum\limits_{i=1}^{500} 2i-\sum\limits_{i=1}^{500} 1$ \\ 
+\indent $= 2 \sum\limits_{i=1}^{500} i - 500$ (because $\sum\limits_{i=1}^{500} 1 = 500)$ \\ 
+\indent $= 2\cdot\frac{500\cdot501}{2} - 500$ \\ 
+\indent $= 500\cdot501 - 500$ \\ 
+\indent $= 500(501-1)$ \\ 
+\indent $= 500 \times 500$ \\ 
+\indent $= 250000$ \\
+\indent Thus the total sum is 250,000. 
+\newline
+\indent c. $\sum\limits_{i=3}^{n+1} 1$ \\
+\indent $= 1(n+1 - 3 + 1)$ \\
+\indent $= n+1-3+1$ \\
+\indent $= n - 1$ \\
+\indent Thus the total sum is n-1. 
+\newline
+\indent e. $\sum\limits_{i=0}^{n-1} i(i+1)$ \\
+\indent $= \sum\limits_{i=0}^{n-1} (i^2+i)$ \\
+\indent $= \sum\limits_{i=0}^{n-1} i^2 + \sum\limits_{i=0}^{n-1} i$ \\
+\indent $= \frac{(n-1)n(2n-1)}{6} + \frac{(n-1)n}{2}$ \\
+\indent $= \frac{(n^2-n)(2n-1)}{6} + \frac{n^2-n}{2}$ \\
+\indent $= \frac{2n^3-n^2-2n^2+n}{6} + \frac{n^2-n}{2}$ \\
+\indent $= \frac{2n^3-3n^2+n}{6} + \frac{n^2-n}{2}$ \\
+\indent $= \frac{2n^3-3n^2+n}{6} + \frac{3n^2-3n}{6}$ \\
+\indent $= \frac{2n^3-2n}{6}$ \\
+\indent $= \frac{n^3-n}{3}$ \\
+\indent $= \frac{n(n^2-1)}{3}$ \\
+\indent Thus the total sum is $\frac{n(n^2-1)}{3}$ 
+
+\section{2.3.4}
+Consider the following algorithm.\\
+\textbf{ALGORITHM} \textit{Mystery(n)} \\
+\indent //Input: A nonnegative integer $n$ \\
+\indent $S \leftarrow 0$ \\
+\indent $\textbf{for}\; i \; \leftarrow \; 1 \; \textbf{to} \; n \; \textbf{do}$ \\
+\indent \indent $S \leftarrow S + i * i$ \\
+\indent \textbf{return} $S$ 
+\newline
+\indent a. What does this algorithm compute? \\
+\indent \indent The algorithm computes the sum of squares of $n$ numbers. In other words, $S(n) = \sum\limits_{i=1}^n i^2$ \\
+\indent b. What is its basic operation? \\
+\indent \indent It's multiplication. \\
+\indent c. How many times is the basic operation executed? \\
+\indent \indent Let $C(n)$ be the number of times the basic operation(multiplication) is executed and express it as a function of size $n$. The algorithm makes one multiplication on each execution of the loop, which is repeated for each value of the loop's variable i within the bound $1$ and $n$. \\
+\indent \indent $\mathrel{\therefore{} C(n)} = \sum\limits_{i=1}^n 1 = n$ \\ 
+\indent d. What is the efficiency class of this algorithm? \\
+\indent \indent $C(n) = \sum\limits_{i=1}^n 1 = n \; \epsilon \; \Theta(n)$\\
+\indent e. Suggest an improvement, or a better algorithm altogether, and indicate its efficiency class. If you cannot do it, try to prove that, in fact, it cannot be done. \\
+\indent \indent To improve the efficiency class of this algorithm, we can use this formula $S(n) = \sum\limits_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}$ to compute the sum in $\Theta(1)$ time.
+
+\section{2.4.1 a, c, d}
+Solve the following recurrence relations. \\
+\indent a. $x(n) = x(n-1) + 5 \; for \; n > 1, \; x(1) = 0$ \\
+\indent \indent $= [x(n-2) + 5] + 5$ 
+                $= x(n-2) + 5\cdot2$ \\
+\indent \indent $= [x(n-3)+5] + 5\cdot2$ 
+                $= x(n-3) + 5\cdot3$\\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent $= [x(n-i) +5] + 5\cdot i$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent $= x(1) + 5(n-1)$ \\
+\indent \indent $= 0 + 5(n-1) \because x(1) = 0 \;$ was given \\
+\indent \indent $= 5(n-1)$ \\
+\indent c. $x(n) = x(n-1) + n \; for \; n > 0, \; x(0) = 0$ \\
+\indent \indent $= [x(n-2) + (n-1)] + n = x(n-2) + (n-1) + n$ \\
+\indent \indent $= [x(n-3) + (n-2) + (n-1)] + n = x(n-3) + (n-2) + (n-1) + n$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent $= x(n-i) + (n-i+1) + (n-i+2) + \cdots + n$ \\ 
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent $= x(0) + 1 + 2+ 3 + \cdots + n$ \\
+\indent \indent $= \frac{n(n+1)}{2}$ \\
+\indent d. $x(n) = x(n/2) + n \; for \; n > 1, \; x(1) = 1$ (solve for $n = 2^k)$ \\
+\indent \indent $= x(2^{k-1}) + 2^k$ \\
+\indent \indent $= [x(2^{k-2}) + 2^{k-1}] + 2^k = x(2^{k-2}) + 2^{k-1} + 2^k$ \\
+\indent \indent $= [x(2^{k-3}) + 2^{k-2}] + 2^{k-1} + 2^k = x(2^{k-3}) + 2^{k-2} + 2^{k-1} + 2^k$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent $= x(2^{k-i}) + 2^{k-i+1} + 2^{k-i+2} + \cdots + 2^k$ \\
+\indent \indent $= x(2^{k-k}) + 2^{k-k+1} + 2^{k-k+2} + \cdots + 2^k$ \\ 
+\indent \indent $= x(2^{k-k}) + 2^1 + 2^2 + \cdots + 2^k$ \\
+\indent \indent $= 1 + 2^1 + 2^2 + \cdots + 2^k$ (We know $2^0 = 1,$ and $x(1) = 1$)  \\
+\indent \indent $= 2^{k+1} - 1$ \\
+\indent \indent $= 2^k \cdot 2 - 1$ \\
+\indent \indent $= 2n-1 (\because n = 2^k)$
+
+\section{2.4.3}
+Consider the following recursive algorithm for computing the sum of the first $n$ cubes: $S(n) = 1^3 + 2^3 + \cdots + n^3$. \\
+\textbf{ALGORITHM} \textit{S(n)} \\
+\indent //Input: A positive integer $n$ \\
+\indent //Output: The sum of the first $n$ cubes \\
+\indent $\textbf{if}\; n = 1 \; \textbf{return} \; S$ \\
+\indent $\textbf{else return} \; S(n-1) + n*n*n $ 
+
+\indent a. Set up and solve a recurrence relation for the number of times the algorithm's basic operation is executed \\
+\indent Assume that $M(n)$ be the number of multiplications made by the algorithm. The recurrence relation for $M(n)$ is provided as follows: $M(n) = M(n-1) + 2$ \\
+\indent We can solve this recurrence relation by using backward substitutions with $M(1) = 0$ is provided as follows: \\
+\indent $M(n) = M(n-1) + 2$ \\
+\indent $= [M(n-2) + 2] + 2 = M(n-2) + 2 + 2$ \\
+\indent $= [M(n-3) + 2] + 2 + 2 = M(n-3) + 2 + 2 + 2$\\
+\indent $= [M(n-4) + 2] + 2 + 2 + 2 = M(n-4) + 2 + 2 + 2 + 2$\\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent \indent \indent \indent $\cdot$ \\
+\indent $= M(n-i) + 2i$ \\
+\indent $= M(1) + 2(n-1)$ \\
+\indent $= 0 + 2(n-1)$ \\
+\indent $= 2(n-1)$ 
+
+\indent b. How does this algorithm compare with the straightforward nonrecursive algorithm for computing this sum? \\
+\textbf{ALGORITHM} \\
+\indent $S \leftarrow 1$ \\
+\indent $\textbf{for}\; i \; \leftarrow \; 2 \; \textbf{to} \; n \; \textbf{do}$ \\
+\indent \indent $S \leftarrow S + i * i * i$ \\
+\indent \textbf{return} $S$ \\
+\indent So the number of multiplications made by this algorithm is: \\ 
+\indent \indent \indent \indent \indent $\sum\limits_{i=2}^{n} 2 = 2\sum\limits_{i=2}^{n} 1 = 2(n-1)$ \\
+\indent The non-recursive version doesn't carry the time and space overhead associated with recursion's stack. 
+
+\section{2.5.8}
+\indent Improve algorithm \textit{Fib} text so that it requires only $\Theta(1)$ space. \\
+The algorithm in the text book is: \\
+\textbf{ALGORITHM} \textit{Fib(n)} \\
+\indent //Computes the nth Fibonacci number iteratively by using its definition
+\indent //Input: A nonnegative integer $n$ \\
+\indent //Output: The nth Fibonacci number \\
+\indent $1. F[0] \leftarrow 0; F[1] \leftarrow 1$ \\
+\indent $2. \textbf{for}\; i \; \leftarrow \; 2 \; \textbf{to} \; n \; \textbf{do}$ \\
+\indent $3$.\indent $F[i] \leftarrow F[i-1] + F[i-2]$ \\
+\indent $4. \textbf{return} F[n]$ \\
+In line 4, we are using an array $F[]$ to store values. This algorithm is computing Fibonacci value at $n^th$ position and returning value of $F[n]$.
+With this algorithm, since we are using array $F[]$ to store values, that's why we are wasting space. So we can improve this algorithm to save space.
+
+\textbf{MODIFIED ALGORITHM} \textit{Fib(n)} \\
+\indent $c \leftarrow 0; b \leftarrow 1$ \\
+\indent $\textbf{for}\; i \; \leftarrow \; 2 \; \textbf{to} \; n$ \\
+\indent $\indent a = b+c$ \\
+\indent $\indent c=b$ \\
+\indent $\indent b=a$ \\
+\indent $\textbf{return} \; a$
+
+So now we have changed our algorithm so that our space complexity reduced to $\Theta(1)$ because we are not using any array like $F[n]$. So our space complexity is constant. 
+\end{document}
