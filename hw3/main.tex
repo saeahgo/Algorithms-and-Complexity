@@ -1,1 +1,116 @@
+\documentclass[8pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
+\title{CS350 HW3}
+\author{Saeah Go}
+\date{Due October 22, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{5.1.1}
+a. Write pseudocode for a divide-and-conquer algorithm for finding the position of the largest element in an array of n numbers. \\
+\textbf{ALGORITHM} \textit{LargestElementPosition(Array[l...r])} \\
+\indent // Input: An array with starting position 1 and ending position r \\
+\indent // Output: The position of the largest element in the array \\
+\indent if l = r \\
+\indent \indent return l \\
+\indent else \\
+\indent \indent mid $\leftarrow \lfloor\frac{l+r}{2}\rfloor$ \\
+\indent \indent position1 $\leftarrow$ \textit{LargestElementPosition}(Array[l ... mid]) \\
+\indent \indent position2 $\leftarrow$ \textit{LargestElementPosition}(Array[(mid+1) ... r]) \\
+\indent \indent if Array[position1] $\ge$ Array[position2] \\
+\indent \indent \indent return position1 \\
+\indent \indent else \\
+\indent \indent \indent return position2 
+
+b. What will be your algorithm’s output for arrays with several elements of
+the largest value? \\
+My algorithm, the \textit{LargestElementPosition} algorithm, outputs the position of the leftmost largest element for arrays with several elements of the largest value. 
+
+c. Set up and solve a recurrence relation for the number of key comparisons
+made by your algorithm. \\
+The recurrence relation for the number of key comparisons is as follows: \\
+$C(n) = C(\lceil\frac{n}{2}\rceil) + C(\lfloor\frac{n}{2}\rfloor) + 1$ for $n > 1$, $C(1) = 0$\\
+Solve the recurrence relation using the backward substitution. Assume $n = 2^k$.
+\indent $C(2^k) = C(\lceil\frac{2^k}{2}\rceil) + C(\lfloor\frac{2^k}{2}\rfloor) + 1$ \\
+\indent \indent \indent $ = C(\lceil2^{k-1})\rceil) + C(\lfloor2^{k-1}\rfloor) + 1 $\\
+\indent \indent \indent $ = 2C(2^{k-1}) + 1$ \\
+\indent \indent \indent $ = 2(2C(2^{k-2} + 1) + 1$ \\
+\indent \indent \indent $ = 2^2(C(2^{k-2} + 2) + 1$ \\
+\indent \indent \indent $ = 2^2(2C(2^{k-3} + 1) + 2 + 1$ \\
+\indent \indent \indent $ = 2^3(C(2^{k-3} + 2^2 + 2) + 1$ \\
+\indent \indent \indent $= ...$ \\
+\indent \indent \indent $ = 2^{i}C(2^{k-i}) + 2^{i-1} + 2^{i-2} + ... + 1$ \\
+Substitute the k in place of i in the above equation. \\
+\indent \indent \indent $ = 2^{k}C(2^{k-k}) + 2^{k-1} + 2^{k-2} + ... + 1$ \\
+\indent \indent \indent $ = 2^{k}C(2^{0}) + 2^{k-1} + 2^{k-2} + ... + 1$ \\
+\indent \indent \indent $ = 2^{k}C(1) + 2^{k-1} + 2^{k-2} + ... + 1$ \\
+\indent \indent \indent $ = 2^{k} \cdot (0) + 2^{k-1} + 2^{k-2} + ... + 1 \indent (\because C(1) = 0) $\\
+\indent \indent \indent $ = 2^{k-1} + 2^{k-2} + ... + 1 $ \\
+\indent \indent \indent $ = 2^{k} - 1 (\because 2^{k-1} + 2^{k-2} + ... + 1 + 1 = 2^k) $ \\
+\indent \indent \indent $ = n - 1 $ \\
+\indent $\therefore C(n) = n - 1$
+
+d. How does this algorithm compare with the brute-force algorithm for this
+problem? \\
+This algorithm makes the same number of key comparisons when compared to the brute force algorithm. But in the brute force algorithm, there is no overhead with the recursive calls.
+
+\section{5.1.5}
+Find the order of growth for solutions of the following recurrences. \\
+a. $T(n) = 4T(n/2) + n, T(1) = 1$ \\
+For this problem, $a = 4, b = 2, f(n) = n$, and $d = 1$. Thus we have \\
+\indent $n^{\log_b a} = n^{\log_2 4}$ \\
+\indent \indent \indent $ = n^{\log_2 2^2} = n^{2log_2 2} = n^{2\cdot1} = \Theta(n^2) $ \\
+If $f(n) = \Theta(n^d)$ with $d \ge 0$ in recurrence relation $T(n) = a T(n/b) + f(n)$, we can apply $T(n) \; \epsilon \; \Theta(n^{log_b a})$ if $a > b^d$ of the master theorem. \\
+$\therefore$ the solution is $T(n) = \Theta(n^2)$
+
+b. $T(n) = 4T(n/2) + n^2, T(1) = 1$ \\ 
+$a = 4, b = 2, f(n) = n^2, d = 2$ and we have that $f(n) = \Theta(n^d) = \Theta(n^2)$ with $d \ge 0$ in recurrence relation $T(n) = a T(n/b) + f(n)$, we can apply $T(n) \; \epsilon \; \Theta(n^d \log(n)$ if $a = b^d$ of the master theorem.\\
+Therefore, the solution is $T(n) = \Theta(n^2 \log n)$
+
+c. $T(n) = 4T(n/2) + n^3, T(1) = 1$ \\
+$a = 4, b = 2, f(n) = n^3, d = 3$ thus we have that $f(n) = \Theta(n^d) = \Theta(n^3)$ with $d \ge 0$ in recurrence equation $T(n) = a T(n/b) + f(n)$ we can apply $T(n) \; \epsilon \; \Theta(n^d)$ if $a < b^d$ of the master theorem. \\
+Thus $T(n) = \Theta(n^3)$
+
+\section{5.2.5}
+For the version of quick sort given in this section: \\
+a. Are arrays made up of all equal elements the worst-case input, the best-case input, or neither? \\
+For quick sort, if all the elements of the array are equal, then this case will lead to the best-case input. If all elements in the array are equal, then the partition of the array can be made in the middle of the array. And we know that the efficiency of the quick sort algorithm depends on the number of key comparisons. As all elements are equal in the array, the partition position can be taken in the middle of all corresponding subarrays. This comes under the best-case input and takes very less time to sort the array elements.
+
+b. Are strictly decreasing arrays the worst-case input, the best-case input, or
+neither? \\
+If all the elements of the array are in strictly decreasing order, then this case will lead to the worst-case input. In this case, if the pivot is chosen as the first element of the array, then it will partition the array into two subarrays one of size 1 and another size (n-1). This situation will lead to the recursion depth of n and the total time of $n^2$. $\therefore$ The given type of input is considered as the worst-case input.
+
+\section{5.2.10 - Programming Assignment}
+Implement quick sort in the language of your choice. Run your program on a sample of inputs to verify the theoretical assertions about the algorithm’s efficiency.
+\indent I made the report with another file, and submitted in D2L.
+
+\section{7.1.1}
+Is it possible to exchange numeric values of two variables, say, u and v, without using any extra storage? \\
+Yes it is possible to exchange numeric values of two variables without using any extra storage. 
+We can think of one case: \\
+$u = u + v$ \\
+$v = u - v$ \\
+$u = u - v$ \\
+For example, if we put the values of u = 5 and v = 4 in the following case, we have \\
+$u = u + v$ \\
+\indent $= 5 + 4$ \\
+\indent $= 9$ \\
+Then, \\
+$v = u - v$ \\
+\indent $= 9 - 4$ \\
+\indent $ = 5$ \\
+$u = u - v$ \\
+\indent $= 9 - 5$ \\
+\indent $= 4$ \\ 
+Then $u = 4$ and $v = 5$. We can see that these values are exchanged.
+
+\section{7.1.4}
+Is the distribution-counting algorithm stable? \\
+Yes, the distribution counting algorithm is stable. A stable sorting algorithm maintains the relative ordering of equal elements. The distribution counting algorithm does not reverse the order of equal elements. We can say the algorithm is stable because in this algorithm, the elements of array whose values are equal to the lowest possible index value. So it maintains the relative order of records. The elements will always follow the same relative order.
+
+\end{document}
