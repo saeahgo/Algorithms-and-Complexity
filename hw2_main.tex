@@ -1,0 +1,136 @@
+\documentclass[8pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{CS350 HW2}
+\author{Saeah Go}
+\date{Due October $15^{th}$, 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{3.1.7 a}
+\indent \textit{A stack of fake coins} \indent There are $n$ stacks of $n$ identical-looking coins. All of the coins in one of these stacks are counterfeit, while all the coins in the other stacks are genuine. Every genuine coin weighs 10 grams; every fake weighs 11 grams. You have an analytical scale that can determine the exact weight of any number of coins.\\
+\indent \indent a. Devise a brute-force algorithm to identify the stack with the fake coins and
+determine its worst-case efficiency class. \\
+\indent \indent Brute Force Algorithm is: \\
+Iterate through all the stacks one by one ($1$ to $n$) and measure weight of one coin from each. If a coin's weights is 11 gm then the coin is the fake one.\\
+\textbf{ALGORITHM} \\
+\indent $\textbf{for}\; i \; \textbf{to} \; n$ \\
+\indent \indent if(weight of a coin(top of stack) of stack ($i$) == $11 gm$): \\
+\indent \indent \indent print (stack(i) is counterfeit) \\
+The worst-case efficiency class is $O(n)$. Since in worst case the last stack we check might be counterfeit, so the for loop can run max $n$ times.
+
+\section{3.1.8}
+Sort the list E, X, A, M, P , L, E in alphabetical order by selection sort.
+With selection sort, we find the smallest value and swap it with the first element. The $|$ indicates where are we in the array. So, \\
+$|$ E X A M P L E \\
+A $|$ X E M P L E (swapped the E and A) \\ 
+A E $|$ X M P L E (swapped the E and X) \\
+A E E $|$ M P L X (swapped the E and X) \\
+A E E L $|$ P M X (swapped the M and L) \\
+A E E L M $|$ P X (swapped the P and M) \\
+A E E L M P $|$ X \\
+A E E L M P X \\
+Thus the sorted list by selection sort is: A E E L M P X
+
+\section{3.1.9}
+Is selection sort stable? (The definition of a stable sorting algorithm was given
+in Section 1.3.) \\
+\indent \indent According to the textbook in Section 1.3, a sorting algorithm is said to be a stable algorithm if the relative ordering of two equal elements in the input array is the same in the sorted array. Thus the selection sort algorithm is \textbf{not stable} algorithm because the relative order of any two equal elements is not preserved.
+
+\section{3.1.10}
+Is it possible to implement selection sort for linked lists with the same $\Theta(n^2)$
+efficiency as the array version? \\
+\indent \indent Yes. It is possible to implement selection sort for linked list with $\Theta(n^2)$ efficiency. In this case, linked list is sorted, and, instead of swaps, minimal element is linked to the unsorted part. By adding up $n + (n-1) + (n-2) + ... + 1$, then the result in $O(n^2)$ number of comparisons. The number of swaps may vary from zero (in case of sorted array) to $n-1$ (in case array was sorted in reversed order), which results in $O(n)$ number of swaps. Thus overall algorithm efficiency is $O(n^2)$.
+
+\section{3.1.12 a, b, c}
+a. Prove that if bubble sort makes no exchanges on its pass through a list, the
+list is sorted and the algorithm can be stopped. \\
+\indent Pass i (i range is: $0 \le i \le n-2$ of bubble sort can be represented by the following diagram: \\
+$A_{0}, ... A_{j} \leftarrow ? \rightarrow A_{j+1} ... A_{n-i-1} | A_{n-i} \le ... \le A_{n-1}$ in their final positions. \\
+If there are no swaps during this pass, then \\
+$A_0 \le A_1 \le ... \le A_{j+1} \le ... \le A_{n-i-1}$ \\
+with the larger elements in positions $n-i$ through $n-1$ being sorted during the previous iterations.\\
+b. Write pseudocode of the method that incorporates this improvement. \\
+\textbf{ALGORITHM} \textit{ImprovedBubbleSort(A[$0...n-1$])} \\
+\indent //the improved version of bubble sort algorithm sorts array A[$0 ... n-1$] \\
+\indent //input: an array A[0 ... n-1] of elements \\
+\indent //output: array A[0 ... n-1] sorted array \\
+\indent $count\; \leftarrow \; n-1$ // compare the number of adjacent pairs \\
+\indent $flag \leftarrow$ true // swap flag\\
+\indent $\textbf{while} \; flag \; \textbf{do}$ \\
+\indent \indent flag $\leftarrow$ \textbf{false} \\
+\indent \indent $\textbf{for}\; j \; \leftarrow \; 0 \; \textbf{to} \; $count - 1$ \; \textbf{do}$ \\
+\indent \indent \indent \textbf{if} $A[j+1] < A[j]$ \\
+\indent \indent \indent \indent swap A[j] and A[j+1] \\
+\indent \indent \indent \indent flag $\leftarrow$ \textbf{true} \\
+\indent \indent \indent count $\leftarrow$ count - 1 \\
+c. Prove that the worst-case efficiency of the improved version is quadratic.
+\indent The worst-case inputs will be strictly decreasing arrays. For them, the improved version will make the same comparisons as the original version. For the worst case of decreasing arrays, it is the same as the number of key comparisons: \\
+$S_{worst} (n) = C(n) = \frac{(n-1)n}{2} \epsilon \Theta(n^2)$ 
+
+\section{3.1.14}
+\textit{Alternating disks} \indent You have a row of $2n$ disks of two colors, $n$ dark and $n$ light. They alternate: dark, light, dark, light, and so on. You want to get all the dark
+disks to the right-hand end, and all the light disks to the left-hand end. The only moves you are allowed to make are those that interchange the positions of two neighboring disks. Design an algorithm for solving this puzzle and determine the number of moves it takes. [Gar99] \\
+\indent Consider an array of size $n$. The array is filled with $0$'s at odd index and with $1$'s at even index. 1 represents a dark disk and 0 represents a light disk. \\
+The algorithm to rearrange the array so that all the black disks represented by $1$ move to the right and all light disks represented by $0$ move to the left is as follows: \\
+\textbf{ALGORITHM} \textit{SortWhiteBlackDisks()} \\
+\indent // Sorts a given array \\
+\indent // Input: An array A[0 ... n-1] containing 0's and 1's as 10101010... \\
+\indent // Output: An array A[0 ... n-1] sorted as 000...111... \\
+\indent // run the outer loop for i from 0 to n-1 \\
+\indent $\textbf{for}\; i \; \leftarrow \; 0 \; \textbf{to} \; n-1$ \\
+\indent \indent // run the inner loop from 0 to n-i-1 \\
+\indent \indent $\textbf{for} \; j \; \leftarrow \; 0 \; \textbf{to} \; n-i-1$ \\
+\indent \indent \indent //compare the adjacent values \\
+\indent \indent \indent \textbf{if} ($A[j+1] < A[j]$) \\
+\indent \indent \indent \indent //swap the values \\
+\indent \indent \indent \indent swap A[j+1] and A[j] \\
+The number of moves taken by the algorithm is the total number of swaps done. At $i^th$ iteration, the disk $i^th$ position is swapped with each of the i dark disks to the left of it. \\
+So the number of moves/swaps = $\sum\limits_{i=1}^n i = \frac{n(n+1)}{2}$
+
+
+\section{4.1.6}
+\textit{Team ordering} You have the results of a completed round-robin tournament in which n teams played each other once. Each game ended either with a victory for one of the teams or with a tie. Design an algorithm that lists the teams in a sequence so that every team did not lose the game with the team listed immediately after it. What is the time efficiency class of your algorithm? \\ 
+\indent We can use merge sort for this problem, and converting the problem into the number problem will make it easy to solve. Merge sort uses divide and conquer technique, in which it devides the group into two parts recursively and at $n == 2$, it compares the numbers, and expands the result.
+So the time complexity for this algorithm is: $O(nlog(n))$ where $n$ being the number of teams. 
+
+\section{4.1.7}
+Apply insertion sort to sort the list E, X, A, M, P, L, E in alphabetical order. \\
+\indent Given list to sort is E, X, A, M, P, L, E. The list is separated with a vertical line as sorted and unsorted lists. From left to right, each key from the unsorted list is compared to the elements in the sorted list. If the element is smaller than any element in the sorted list, then it is placed at the appropriate position. The element being inserted in shown in bold. \\
+E $|$ \textbf{X} A M P L E \\
+E X $|$ \textbf{A} M P L E \\
+A E X $|$ \textbf{M} P L E \\
+A E M X $|$ \textbf{P} L E \\
+A E M P X $|$ \textbf{L} E \\
+A E L M P X $|$ \textbf{E} \\
+A E E L M P X \\
+$\mathrel{\therefore{}}$ The sorted list is A, E, E, L, M, P, X.
+
+\section{4.1.9}
+Is it possible to implement insertion sort for sorting linked lists? Will it have
+the same O(n2) time efficiency as the array version? \\
+\indent Yes, it is possible to implement insertion sort for sorting linked lists, but we will have to scan the sorted part from left to right while inserting $A[i]$ to get the same $O(n^2)$ efficiency as the array version.
+
+\section{4.1.10}
+Compare the text’s implementation of insertion sort with the following version.
+\textbf{ALGORITHM} \textit{InsertSort2(A[$0...n-1$])} \\
+\indent $\textbf{for}\; i \; \leftarrow \; 1 \; \textbf{to} \; $n-1$ \; \textbf{do}$ \\
+\indent \indent $j \leftarrow i-1$ \\
+\indent $\textbf{while} \; j \ge 0 \; \textbf{and} A[j] > A[j+1] \; \textbf{do}$ \\
+\indent \indent swap(A[j], A[j+1]) \\
+\indent \indent \textit{$j \leftarrow j-1$} \\
+What is the time efficiency of this algorithm? How is it compared to that of the version given in Section 4.1? \\
+Let's consider the best case first.
+Best case: The best case for the given algorithm will be when the comparison $A[j] > A[j+1]$ is always false, that is the elements of the array are already sorted in the required order. \\
+\indent $\mathrel{\therefore{}} C_{best}(n) = n \; \epsilon \; \Theta(n)$
+Then let's consider the worst case. The worst case for the algorithm is when the comparison $A[j] > A[j+1]$ always returns true when checked. The total number of comparisons done are calculated as follows: \\
+$(1 + 2 + 3 + ... + n - 1) = \frac{n(n-1)}{2}$ \\
+\indent $\mathrel{\therefore{}} C_{worst}(n) = \frac{n(n-1)}{2} \; \epsilon \; \Theta(n^2)$ \\
+And we know that the average case would be like: \\
+\indent $C_{avg}(n) \approx \frac{n^2}{4} \; \epsilon \; \Theta(n^2)$ \\
+Based on the analysis, it is clear that both the algorithms (algorithm given in the textbook and the algorithm given in the question) have the same efficiency.
+\end{document}
