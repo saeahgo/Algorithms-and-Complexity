@@ -1,0 +1,59 @@
+---
+title: "CS350 Graph for HW4"
+author: "Saeah Go"
+date: "Due 10/29/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+cases <- c(1, 2, 3, 4, 5) 
+best <- c(0.000400,0.001701,0.001030,0.002567,0.001165)
+avg <- c(0.001552,0.002625,0.004219,0.007582,0.011895)
+worst <- c(0.002039,0.004055,0.008951,0.013089,0.021032)
+y <- list(best, avg, worst)
+
+plot(cases, y[[1]], # best cases
+     xlab = "Case Number", 
+     main = "Time in seconds for each case", 
+     ylab = "Execution Time (s)", 
+     col = "red",
+     ylim = c(0.0002, 0.022), 
+     lwd = 3, 
+     pch = 16)
+lines(cases, y[[1]], col = "red")
+par(new = TRUE)
+plot(cases, y[[2]], # avg cases (random cases)
+     xlab = "Case Number", 
+     main = "Time in seconds for each case", 
+     ylab = "Execution Time (s)", 
+     col = "green",
+     ylim = c(0.0002, 0.022), 
+     lwd = 3, 
+     pch = 16)
+lines(cases, y[[2]], col = "green")
+par(new = TRUE)
+plot(cases, y[[3]], # worst case (can't find the pattern in the text)
+     xlab = "Case Number", 
+     main = "Time in seconds for each case", 
+     ylab = "Execution Time (s)", 
+     col = "blue", 
+     ylim = c(0.0002, 0.022), 
+     lwd = 3, 
+     pch = 16)
+lines(cases, y[[3]], col = "blue")
+
+legend("topleft", 
+       bty = "y", # made box for legend 
+       pch = c(16,16,16,16,16),
+       col = c("red", "green", "blue"), 
+       legend = c("Best Cases",
+                  "Average Cases", 
+                  "Worst Cases"))
+
+```
